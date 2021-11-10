@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import './App.css';
 import s from "./components/Count.module.css";
 import {Buttons} from "./components/Buttons";
@@ -9,26 +9,13 @@ import {
     focusInput1AC,
     focusInput2AC,
     maxValueHandlerAC,
-    SetMaxValue,
-    SetResetValue,
+    MaxValueAC,
+    ResetValueAC,
     startValueHandlerAC,
     StateType
 } from './bll/CounterReducer'
 
-// const startCount = localStorage.getItem('startValue')
-// const maxCount = localStorage.getItem('maxValue')
-
 function App() {
-
-    // useEffect(() => {
-    //     if (startCount) {
-    //         dispatch(SetResetValue(+startCount))
-    //     }
-    //     if (maxCount){
-    //         dispatch(SetMaxValue(+maxCount))
-    //     }
-    // },[])
-
 
     const dispatch = useDispatch()
     const {
@@ -50,12 +37,12 @@ function App() {
 
     function maxValue() {
         if (number < max) {
-            dispatch(SetMaxValue(number))
+            dispatch(MaxValueAC(number))
         }
     }
 
     function resetValue() {
-        dispatch(SetResetValue(start))
+        dispatch(ResetValueAC(start))
     }
 
 
@@ -65,7 +52,6 @@ function App() {
         localStorage.setItem('maxValue', JSON.stringify(max))
         localStorage.setItem('startValue', JSON.stringify(start))
     }
-
 
     return (
         <div className={s.Count}>
